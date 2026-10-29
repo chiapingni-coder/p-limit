@@ -1,0 +1,11 @@
+{
+  "schema": "RELEASEBRIDGE_PR_FREEZE_POLICY_V1",
+  "repo": "chiapingni-coder/p-limit",
+  "base_ref": "rb-p-limit-fix-baseline",
+  "protected_paths": [
+    {
+      "path": "index.js",
+      "blob": "c24de5782032605aa83636bcf455f700e3b2ada7"
+    }
+  ]
+}
