@@ -105,23 +105,7 @@ export default function pLimit(concurrency) {
 		},
 		map: {
 			async value(iterable, function_) {
-				const promises = [];
-
-				try {
-					Array.from(iterable, (value, index) => {
-						const promise = generator(function_, value, index);
-						promises.push(promise);
-						return promise;
-					});
-				} catch (error) {
-					// The iterable threw, so `Promise.all` never observes the already scheduled promises. Observe them here to avoid unhandled rejections.
-					for (const promise of promises) {
-						promise.catch(() => {}); // eslint-disable-line promise/prefer-await-to-then
-					}
-
-					throw error;
-				}
-
+				const promises = Array.from(iterable, (value, index) => generator(function_, value, index));
 				return Promise.all(promises);
 			},
 		},
